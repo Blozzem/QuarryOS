@@ -4,8 +4,26 @@ local quarry =
 local movement =
     require("core.movement")
 
+local inventory =
+    require("core.inventory")
+
+local home =
+    require("core.home")
 
 local miner = {}
+
+local function checkStatus()
+
+    if inventory.getFreeSlots() <= 2 then
+
+        print("Inventar fast voll!")
+
+        home.returnAndService()
+
+    end
+
+
+end
 
 local function nextLayer()
 
@@ -19,7 +37,8 @@ end
 local function mineLine(length)
 
     for i = 1,length do
-
+        checkStatus()
+        
         quarry.clear()
 
         if i < length then
