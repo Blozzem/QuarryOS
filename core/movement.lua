@@ -219,29 +219,56 @@ function movement.turnRight()
 end
 
 
-
 ------------------------------------------------
--- Zur Startposition zurück
+-- Zur gespeicherten Startstation zurückkehren
 ------------------------------------------------
 
 function movement.home()
 
-    -- Höhe ausgleichen
+    local homepoint =
+        require("core.homepoint")
 
-    while state.y > 0 do
+
+    local home =
+        homepoint.get()
+
+
+    if not home then
+
+        print("FEHLER:")
+        print("Keine Startstation gespeichert!")
+
+        return false
+
+    end
+
+
+
+    print("")
+
+    print("Fahre zur Startstation...")
+
+
+    ------------------------------------------------
+    -- Höhe anpassen
+    ------------------------------------------------
+
+    while state.y > home.y do
         movement.down()
     end
 
 
-    while state.y < 0 do
+    while state.y < home.y do
         movement.up()
     end
 
 
 
-    -- X korrigieren
+    ------------------------------------------------
+    -- X Position korrigieren
+    ------------------------------------------------
 
-    while state.x > 0 do
+    while state.x > home.x do
 
         while state.direction ~= 3 do
             movement.turnRight()
@@ -252,7 +279,8 @@ function movement.home()
     end
 
 
-    while state.x < 0 do
+
+    while state.x < home.x do
 
         while state.direction ~= 1 do
             movement.turnRight()
@@ -264,9 +292,11 @@ function movement.home()
 
 
 
-    -- Z korrigieren
+    ------------------------------------------------
+    -- Z Position korrigieren
+    ------------------------------------------------
 
-    while state.z > 0 do
+    while state.z > home.z do
 
         while state.direction ~= 0 do
             movement.turnRight()
@@ -277,7 +307,8 @@ function movement.home()
     end
 
 
-    while state.z < 0 do
+
+    while state.z < home.z do
 
         while state.direction ~= 2 do
             movement.turnRight()
@@ -286,6 +317,12 @@ function movement.home()
         movement.forward()
 
     end
+
+
+
+    print("Startstation erreicht!")
+
+    return true
 
 end
 
