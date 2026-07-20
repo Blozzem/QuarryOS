@@ -7,6 +7,14 @@ local movement =
 
 local miner = {}
 
+local function nextLayer()
+
+    movement.down()
+
+    movement.turnRight()
+    movement.turnRight()
+
+end
 
 local function mineLine(length)
 
@@ -105,13 +113,13 @@ function miner.start(data)
 
 
 
-        if layer < data.depth then
+           if layer < data.depth then
 
-            print("Nächste Ebene")
+                print("Nächste Ebene")
 
-            movement.down()
+                nextLayer()
 
-        end
+            end
 
 
     end
