@@ -1,140 +1,71 @@
---[[
-    QuarryOS
-    Miner Engine v1.0
-
-    Erste echte Quarry-Funktion
-
-    Schlangenlinien-Abbau
-]]
-
-
 local quarry =
     require("modules.quarry")
 
 local movement =
     require("core.movement")
 
-local job =
-    require("core.job")
-
-
 
 local miner = {}
 
 
+local function mineLine(length)
 
-------------------------------------------------
--- Eine Reihe abbauen
-------------------------------------------------
-
-local function mineRow(width)
-
-    for i = 1,width do
+    for i = 1,length do
 
         quarry.clear()
 
-        quarry.forward()
-
-    end
-
-end
-
-
-
-------------------------------------------------
--- Wenden
-------------------------------------------------
-
-local function turnAround()
-
-    movement.turnRight()
-    movement.turnRight()
-
-end
-
-
-
-------------------------------------------------
--- Eine Ebene abbauen
-------------------------------------------------
-
-local function mineLayer(data)
-
-
-    for row = 1,data.length do
-
-
-        mineRow(data.width)
-
-
-
-        if row < data.length then
-
-
-            if row % 2 == 1 then
-
-                movement.turnRight()
-
-                quarry.clear()
-                quarry.forward()
-
-                movement.turnRight()
-
-
-            else
-
-                movement.turnLeft()
-
-                quarry.clear()
-                quarry.forward()
-
-                movement.turnLeft()
-
-            end
-
-
+        if i < length then
+            quarry.forward()
         end
 
-
     end
 
 end
 
 
 
-------------------------------------------------
--- Quarry starten
-------------------------------------------------
+local function nextLineRight()
+
+    movement.turnRight()
+
+    quarry.clear()
+    quarry.forward()
+
+    movement.turnRight()
+
+end
+
+
+
+local function nextLineLeft()
+
+    movement.turnLeft()
+
+    quarry.clear()
+    quarry.forward()
+
+    movement.turnLeft()
+
+end
+
+
 
 function miner.start(data)
 
-
-    print("")
-    print("================")
-    print(" QuarryOS Miner ")
-    print("================")
-
+    print("Quarry gestartet")
 
     print(
-        data.width
-        ..
-        " x "
-        ..
-        data.length
-        ..
-        " x "
-        ..
+        data.width ..
+        " x " ..
+        data.length ..
+        " x " ..
         data.depth
     )
-
-
-    print("")
 
 
     -- Startfeld verlassen
 
     quarry.clear()
-
     quarry.forward()
 
 
@@ -142,20 +73,41 @@ function miner.start(data)
     for layer = 1,data.depth do
 
 
-        print(
-            "Ebene "
-            ..
-            layer
-        )
+        print("Ebene "..layer)
 
 
-        mineLayer(data)
+
+        for row = 1,data.length do
+
+
+            mineLine(data.width)
+
+
+
+            if row < data.length then
+
+
+                if row % 2 == 1 then
+
+                    nextLineRight()
+
+                else
+
+                    nextLineLeft()
+
+                end
+
+
+            end
+
+
+        end
 
 
 
         if layer < data.depth then
 
-            -- nächste Ebene
+            print("Nächste Ebene")
 
             movement.down()
 
@@ -165,9 +117,7 @@ function miner.start(data)
     end
 
 
-    print("")
-
-    print("Quarry abgeschlossen!")
+    print("Quarry fertig")
 
 end
 
