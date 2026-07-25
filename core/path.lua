@@ -134,6 +134,61 @@ function path.returnHome()
 
 end
 
+---------------------------------------
+-- Weg wieder ablaufen
+---------------------------------------
 
+function path.resume()
+
+
+    print("Setze Arbeit fort...")
+
+
+    for i = 1,#path.moves do
+
+
+        local move =
+            path.moves[i]
+
+
+        if move == "forward" then
+
+            turtle.forward()
+
+
+        elseif move == "back" then
+
+            turtle.back()
+
+
+        elseif move == "up" then
+
+            turtle.up()
+
+
+        elseif move == "down" then
+
+            turtle.down()
+
+
+        elseif move == "turnLeft" then
+
+            turtle.turnLeft()
+
+
+        elseif move == "turnRight" then
+
+            turtle.turnRight()
+
+        end
+
+
+    end
+
+
+    print("Position wieder erreicht")
+
+
+end
 
 return path
