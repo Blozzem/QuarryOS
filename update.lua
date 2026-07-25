@@ -1,47 +1,56 @@
---==========================================
+--=================================
 -- QuarryOS Updater
--- Version 0.1
---==========================================
+--=================================
 
-local BASE = "https://raw.githubusercontent.com/Blozzem/QuarryOS/main/"
 
-local files = {
+local BASE =
+"https://raw.githubusercontent.com/Blozzem/QuarryOS/main/"
 
-    "version.lua",
 
-    "core/config.lua",
-    "core/save.lua",
-    "core/job.lua",
-    "core/movement.lua",
-    "core/homepoint.lua",
-    "core/fuel.lua",
-    "core/inventory.lua",
-
-    "modules/quarry.lua",
-    "modules/miner.lua",
-
-    "setup.lua"
-
-}
-
-print("=================================")
-print("      QuarryOS Updater")
-print("=================================")
+print("==============================")
+print("       QuarryOS Update")
+print("==============================")
 print("")
+
+
+shell.run(
+    "wget "..BASE.."manifest.lua manifest.lua"
+)
+
+
+local files =
+    dofile("manifest.lua")
+
+
 
 for _,file in ipairs(files) do
 
-    print("Update: "..file)
 
-    shell.run("delete "..file)
+    print("Update:")
+    print(file)
+
+
+    local folder =
+        fs.getDir(file)
+
+
+    if folder ~= "" then
+
+        fs.makeDir(folder)
+
+    end
+
 
     shell.run(
         "wget "..BASE..file.." "..file
     )
 
+
 end
 
+
+
 print("")
-print("=================================")
-print("Update abgeschlossen!")
-print("=================================")
+print("==============================")
+print(" Update fertig!")
+print("==============================")
