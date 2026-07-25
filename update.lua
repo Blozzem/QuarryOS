@@ -1,7 +1,14 @@
 --=====================================
 -- QuarryOS Updater v2
 --=====================================
+print("Lade aktuelle Manifest...")
 
+shell.run(
+    "wget https://raw.githubusercontent.com/Blozzem/QuarryOS/main/manifest.lua manifest_new.lua"
+)
+
+local newFiles =
+    dofile("manifest_new.lua")
 
 local BASE =
 "https://raw.githubusercontent.com/Blozzem/QuarryOS/main/"
@@ -119,7 +126,12 @@ for _,file in ipairs(newFiles) do
 
 end
 
+fs.delete("manifest.lua")
 
+fs.move(
+    "manifest_new.lua",
+    "manifest.lua"
+)
 
 print("")
 print("==========================")
