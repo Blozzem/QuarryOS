@@ -15,6 +15,7 @@ return {
     "core/fuel.lua",
     "core/inventory.lua",
     "core/service.lua",
+    "core/path.lua",
 
     -- Module
     "modules/quarry.lua",
