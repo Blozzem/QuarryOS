@@ -1,6 +1,9 @@
 local quarry =
     require("modules.quarry")
 
+local station =
+    require("modules.station")
+
 local movement =
     require("core.movement")
 
