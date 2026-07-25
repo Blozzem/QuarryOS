@@ -2,8 +2,8 @@ return {
 
     name = "QuarryOS",
 
-    version = "1.0.0",
+    version = "1.1.0",
 
-    build = 1
+    build = 10
 
 }
