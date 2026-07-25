@@ -4,6 +4,9 @@ local quarry =
 local station =
     require("modules.station")
 
+local service =
+    require("core.service")
+
 local movement =
     require("core.movement")
 
@@ -19,9 +22,10 @@ local function checkStatus()
 
     if inventory.getFreeSlots() <= 2 then
 
-        print("Inventar fast voll!")
+        print("Inventar voll!")
 
-        station.service()
+        service.run()
+
 
     end
 
