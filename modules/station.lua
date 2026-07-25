@@ -18,13 +18,11 @@ function station.deposit()
     print("Lade Inventar aus...")
 
 
-    -- Alle Slots durchgehen
-
     for slot = 1,16 do
 
         turtle.select(slot)
 
-        turtle.dropDown()
+        turtle.drop()
 
     end
 
@@ -34,7 +32,6 @@ function station.deposit()
     print("Inventar ausgeladen")
 
 end
-
 
 
 ------------------------------------------------
