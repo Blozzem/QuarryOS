@@ -21,7 +21,7 @@ local function checkStatus()
 
         print("Inventar fast voll!")
 
-        home.returnAndService()
+        station.service()
 
     end
 
