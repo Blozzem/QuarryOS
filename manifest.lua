@@ -1,12 +1,26 @@
+-- QuarryOS Datei-Liste
+-- Der Updater lädt alle Dateien aus dieser Liste
+
 return {
 
-"core/config.lua",
-"core/save.lua",
-"core/job.lua",
+    -- System
+    "version.lua",
 
-"modules/miner.lua",
-"modules/quarry.lua",
+    -- Core
+    "core/config.lua",
+    "core/save.lua",
+    "core/job.lua",
+    "core/movement.lua",
+    "core/homepoint.lua",
+    "core/fuel.lua",
+    "core/inventory.lua",
 
-"setup.lua"
+    -- Module
+    "modules/quarry.lua",
+    "modules/miner.lua",
+
+    -- Programme
+    "setup.lua",
+    "quarry.lua"
 
 }
