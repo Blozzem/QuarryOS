@@ -18,6 +18,7 @@ return {
     -- Module
     "modules/quarry.lua",
     "modules/miner.lua",
+    "modules/station.lua,
 
     -- Programme
     "setup.lua",
