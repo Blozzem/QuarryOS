@@ -40,8 +40,12 @@ end
 
 function station.refuel()
 
+    print("Prüfe Fuel...")
+
 
     if turtle.getFuelLevel() > 100 then
+
+        print("Fuel ausreichend")
 
         return true
 
